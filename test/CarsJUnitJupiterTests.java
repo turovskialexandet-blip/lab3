@@ -1,3 +1,4 @@
+import Lab1and2.*;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -182,12 +183,12 @@ public class CarsJUnitJupiterTests {
         man.raiseRamp();
         assertFalse(man.isRampLowered());
 
-        // Kör och flytta MAN
+        // Kör och flytta Lab1and2.MAN
         man.startEngine();
         man.gas(1.0);
         man.move();
 
-        // Lastad bil ska alltid ha samma position som MAN
+        // Lastad bil ska alltid ha samma position som Lab1and2.MAN
         assertEquals(man.getCoordinates(), volvo.getCoordinates());
     }
 
@@ -267,7 +268,7 @@ public class CarsJUnitJupiterTests {
         assertSame(v, out);
 
         // Följande rad ska INTE kompilera (compile-time error) och är hela poängen med uppgift 3:
-        // volvoWorkshop.load(new Saab95());
+        // volvoWorkshop.load(new Lab1and2.Saab95());
     }
 
     @Test

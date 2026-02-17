@@ -1,7 +1,9 @@
+package Lab1and2;
+
 import java.awt.*;
 import java.util.List;
 /**
- * MAN - Biltransport
+ * Lab1and2.MAN - Biltransport
  * Regler:
  * - Rampen har två lägen: uppe eller nere.
  * - Rampen får bara vara nere när bilen står still.
@@ -12,12 +14,12 @@ import java.util.List;
 
 public class MAN extends Truck<Car> {
 
-    private final Flatbed flatbed;      // använder ramp funktionen i Flatbed
+    private final Flatbed flatbed;      // använder ramp funktionen i Lab1and2.Flatbed
     private final int maxCars;
     private final double maxLoadDistance;  // "rimligt nära"
 
     public MAN(int maxCars) {
-        super(2, 400, Color.GRAY, "MAN"); //rimliga startvärden
+        super(2, 400, Color.GRAY, "Lab1and2.MAN"); //rimliga startvärden
         this.flatbed = new Flatbed();
         this.maxCars = maxCars;
         this.maxLoadDistance = 10.0;
@@ -28,7 +30,7 @@ public class MAN extends Truck<Car> {
         return flatbed.getRampLowered();
     }
 
-    //Sänker rampen om MAN står stilla.
+    //Sänker rampen om Lab1and2.MAN står stilla.
     public void lowerRamp() {
         if (getCurrentSpeed() == 0) {
             flatbed.LoweredRamp();
@@ -64,7 +66,7 @@ public class MAN extends Truck<Car> {
      * @return true om bilen lastades, annars false
      */
     public boolean loadCar(Car car) {
-        // Rampen måste vara nere och MAN måste stå still
+        // Rampen måste vara nere och Lab1and2.MAN måste stå still
         if (!isRampLowered() || getCurrentSpeed() != 0) return false;
 
         // Max antal bilar
@@ -85,7 +87,7 @@ public class MAN extends Truck<Car> {
     }
 
     /**
-     * Lossar sista bilen (FILO) om rampen är nere och MAN står still.
+     * Lossar sista bilen (FILO) om rampen är nere och Lab1and2.MAN står still.
      * @return bilen som lossades, eller null om det inte gick
      */
     public Car unloadCar() {
@@ -99,7 +101,7 @@ public class MAN extends Truck<Car> {
         // istället för removeLast(), som endast finns för Deque/LinkedList.
         Car car = cargo.remove(cargo.size() - 1);
 
-        // Placera "rimligt nära" efter lossning (t.ex. Bakom MAN)
+        // Placera "rimligt nära" efter lossning (t.ex. Bakom Lab1and2.MAN)
         // (Vi tar en enkel regel: x - 1)
         car.getCoordinates().x = this.getCoordinates().x - 1;
         car.getCoordinates().y = this.getCoordinates().y;

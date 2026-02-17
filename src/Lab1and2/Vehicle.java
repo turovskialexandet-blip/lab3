@@ -1,5 +1,6 @@
+package Lab1and2;
+
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Vehicle implements Movable {
     private final Point coordinates = new Point(0, 0);

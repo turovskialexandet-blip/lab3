@@ -1,11 +1,13 @@
+package Lab1and2;
+
 import java.awt.*;
 
-public class Saab95 extends Car{
+public class Saab95 extends Car {
 
     private final TurboCharger turboCharger = new TurboCharger();
     
     public Saab95(){
-        super(2, 125, Color.red, "Saab95");
+        super(2, 125, Color.red, "Lab1and2.Saab95");
         setTurboOff();
     }
 

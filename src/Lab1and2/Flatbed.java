@@ -1,3 +1,5 @@
+package Lab1and2;
+
 public class Flatbed {
     private double FlatBedAngle = 0;
     private boolean RampLowered = false;

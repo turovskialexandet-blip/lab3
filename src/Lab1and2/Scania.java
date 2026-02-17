@@ -1,3 +1,5 @@
+package Lab1and2;
+
 import java.awt.*;
 
 public class Scania extends Truck<Object>{
@@ -5,7 +7,7 @@ public class Scania extends Truck<Object>{
     private final TurboCharger turboCharger;
 
     public Scania(){
-        super(2, 550, Color.BLUE, "Scania");
+        super(2, 550, Color.BLUE, "Lab1and2.Scania");
         flatbed = new Flatbed();
         turboCharger = new TurboCharger();
     }
@@ -14,8 +16,8 @@ public class Scania extends Truck<Object>{
 
     public void RaiseFlatbed(double angle) {
         if (getCurrentSpeed() == 0) {
-            // då du har redan lagt till detta vilkoret i Scania och MAN så tog jag brot det
-            // från Flatbed.java
+            // då du har redan lagt till detta vilkoret i Lab1and2.Scania och Lab1and2.MAN så tog jag brot det
+            // från Lab1and2.Flatbed.java
             flatbed.RaiseFlatbed(angle);
         }
     }

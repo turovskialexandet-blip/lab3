@@ -1,3 +1,5 @@
+package Lab1and2;
+
 import java.awt.*;
 
 public class Car extends Motor_vehicle {
