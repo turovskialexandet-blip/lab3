@@ -41,7 +41,7 @@ public class Workshop<T extends Car> {
      */
     public T unload() {
         if (storedCars.isEmpty()) return null;
-        return storedCars.remove(storedCars.size() - 1);
+        return storedCars.removeLast();
     }
 }
 

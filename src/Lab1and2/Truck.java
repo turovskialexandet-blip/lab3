@@ -32,5 +32,5 @@ public class Truck <Cargo> extends Motor_vehicle{
 
     public void Load(Cargo cargo){ truckCargo.add(cargo); }
 
-    public void Off_Load(){ truckCargo.remove(-1); }
+    public void Off_Load(){ truckCargo.removeLast(); }
 }
