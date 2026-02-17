@@ -24,8 +24,7 @@ public class DrawPanel extends JPanel{
 
     // TODO: Make this general for all cars
     void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
+        carPositions.add(new Point(x, y));
     }
 
     // Initializes the panel and reads the images
