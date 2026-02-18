@@ -24,7 +24,7 @@ public class Vehicle implements Movable {
         }
     }
 
-    public void turnLeft(){ direction_state = (direction_state - 1) % 4; }
+    public void turnLeft(){ direction_state = (direction_state + 3 ) % 4; }
 
     public void turnRight(){ direction_state = (direction_state + 1) % 4; }
 
@@ -41,6 +41,8 @@ public class Vehicle implements Movable {
     public void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
+
+    public int getDirection_state(){return direction_state;}
 
     public double Zero_to_One(double amount){
         if (amount <= 0) amount = 0;

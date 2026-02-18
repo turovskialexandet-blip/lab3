@@ -53,6 +53,27 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getCoordinates().x);
                 int y = (int) Math.round(car.getCoordinates().y);
+
+                //dont move outside frame
+                int maxX = frame.drawPanel.getWidth() - 100; //how far you can move in x
+                int maxY = frame.drawPanel.getHeight() - 60;
+
+                boolean hitWall = false;
+                if ((x >= maxX && car.getDirection_state() == 1) || //right wall, drive right
+                        (x <= 0 && car.getDirection_state() == 3) || //left wall, drive left
+                        (y >= maxY && car.getDirection_state() == 0) || //bottom, drive down
+                        (y <= 0 && car.getDirection_state() == 2) //up, drive up
+                ) {
+                    hitWall = true;
+                }
+
+                if (hitWall) {
+                    car.stopEngine();
+                    car.turnLeft();
+                    car.turnLeft();
+                    car.startEngine();
+                }
+
                 frame.drawPanel.moveit(x, y, current_Car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
@@ -111,11 +132,11 @@ public class CarController {
         }
     }
 
-        void lowerBed () {
-                for (Motor_vehicle car : cars) {
-                    if (car instanceof Scania) {
-                        ((Scania) car).LowerFlatbed(45);
-                    }
-                }
+    void lowerBed () {
+        for (Motor_vehicle car : cars) {
+            if (car instanceof Scania) {
+                ((Scania) car).LowerFlatbed(45);
             }
         }
+    }
+}
