@@ -47,7 +47,7 @@ public class DrawPanel extends JPanel{
             //laddar alla bilder i listan
             carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
             carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
-            //carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
+            carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
 
             volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
         } catch (IOException ex)
@@ -62,7 +62,6 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
 
         for (int i = 0; i < carImages.size(); i++){ //för varje bild, hämtas pos med samma index
             g.drawImage(carImages.get(i), carPositions.get(i).x, carPositions.get(i).y, null);

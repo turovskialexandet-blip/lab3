@@ -1,6 +1,7 @@
 import Lab1and2.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -35,12 +36,23 @@ public class CarController {
         cc.cars.add(new Lab1and2.Saab95());
         cc.cars.add(new Lab1and2.Scania());
 
+        //cars starting 100 pixels away from each other
+        cc.carStartPositions();
+
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
 
         // Start the timer
         cc.timer.start();
     }
+
+    //spawning 100 pixels away from each other
+    public void carStartPositions() {
+        for (int i = 0; i < cars.size(); i++){
+        Motor_vehicle car = cars.get(i);
+        car.getCoordinates().x = 0; //all starts at 0
+        car.getCoordinates().y = i * 100; //index * 100 --> 100 pixels away in y
+    }}
 
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
