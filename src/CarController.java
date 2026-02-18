@@ -23,7 +23,7 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+    ArrayList<Motor_vehicle> cars = new ArrayList<>();
 
     //methods:
 
@@ -31,7 +31,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        // cc.cars.add(new Lab1and2.Volvo240());
+        cc.cars.add(new Lab1and2.Volvo240());
+        cc.cars.add(new Lab1and2.Saab95());
+        cc.cars.add(new Lab1and2.Scania());
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -46,13 +48,15 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             // This
-            for (Car car : cars) {
+            int current_Car = 0;
+            for (Motor_vehicle car : cars) {
                 car.move();
                 int x = (int) Math.round(car.getCoordinates().x);
                 int y = (int) Math.round(car.getCoordinates().y);
-                frame.drawPanel.moveit(x, y);
+                frame.drawPanel.moveit(x, y, current_Car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
+                current_Car ++;
             }
         }
     }
@@ -60,19 +64,19 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Car car : cars) {
+        for (Motor_vehicle car : cars) {
             car.gas(gas);
         }
     }
 
     void start(){
-        for (Car car : cars) {
+        for (Motor_vehicle car : cars) {
             car.startEngine();
         }
     }
 
     void stop(){
-        for (Car car : cars) {
+        for (Motor_vehicle car : cars) {
             car.stopEngine();
         }
     }

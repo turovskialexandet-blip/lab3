@@ -17,11 +17,13 @@ public class Motor_vehicle extends Vehicle {
     public void incrementSpeed(double amount){ currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()); }
 
     public void gas(double amount){
+        System.out.println("Pressed");
         amount = Zero_to_One(amount);
         incrementSpeed(amount);
     }
 
     public void brake(double amount){
+        System.out.println("Pressed");
         amount = Zero_to_One(amount);
         decrementSpeed(amount);
     }

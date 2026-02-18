@@ -16,15 +16,17 @@ public class DrawPanel extends JPanel{
     private List<BufferedImage> carImages = new ArrayList<>(); //lista med bilder för alal bilar
 
     // To keep track of a single car's position
-    //Point volvoPoint = new Point();
+    //Point vehiclePoint = new Point();
     private List<Point> carPositions = new ArrayList<>(); //lista med pos för varje bil
 
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
 
     // TODO: Make this general for all cars
-    void moveit(int x, int y){
-        carPositions.add(new Point(x, y));
+    void moveit(int x, int y, int index){
+        //this.vehiclePoint.x = x;
+        //this.vehiclePoint.y = y;
+        this.carPositions.add(index, new Point(x, y));
     }
 
     // Initializes the panel and reads the images
@@ -45,7 +47,7 @@ public class DrawPanel extends JPanel{
             //laddar alla bilder i listan
             carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
             carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg")));
-            carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
+            //carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg")));
 
             volvoWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/VolvoBrand.jpg"));
         } catch (IOException ex)
@@ -61,9 +63,11 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+
         for (int i = 0; i < carImages.size(); i++){ //för varje bild, hämtas pos med samma index
             g.drawImage(carImages.get(i), carPositions.get(i).x, carPositions.get(i).y, null);
         }
+
         //g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
 
         g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
