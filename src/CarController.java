@@ -43,8 +43,8 @@ public class CarController {
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
+     * view to update its images. Change this method to your needs.
+     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             // This
@@ -56,7 +56,7 @@ public class CarController {
                 frame.drawPanel.moveit(x, y, current_Car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
-                current_Car ++;
+                current_Car++;
             }
         }
     }
@@ -69,15 +69,53 @@ public class CarController {
         }
     }
 
-    void start(){
+    void brake(int amount) {
+        double brakeAmount = ((double) amount) / 100;
+        for (Motor_vehicle car : cars) {
+            car.brake(brakeAmount);
+        }
+
+    }
+
+    void start() {
         for (Motor_vehicle car : cars) {
             car.startEngine();
         }
     }
 
-    void stop(){
+    void stop() {
         for (Motor_vehicle car : cars) {
             car.stopEngine();
         }
     }
-}
+
+    void turboOn() {
+        for (Motor_vehicle car : cars) {
+            if (car instanceof Saab95) ((Saab95) car).setTurboOn();
+            else if (car instanceof Scania) ((Scania) car).setTurboOn();
+        }
+    }
+
+    void turboOff() {
+        for (Motor_vehicle car : cars) {
+            if (car instanceof Saab95) ((Saab95) car).setTurboOff();
+            else if (car instanceof Scania) ((Scania) car).setTurboOff();
+        }
+    }
+
+    void liftBed () {
+        for (Motor_vehicle car : cars) {
+            if (car instanceof Scania) {
+                ((Scania) car).RaiseFlatbed(45);
+            }
+        }
+    }
+
+        void lowerBed () {
+                for (Motor_vehicle car : cars) {
+                    if (car instanceof Scania) {
+                        ((Scania) car).LowerFlatbed(45);
+                    }
+                }
+            }
+        }
