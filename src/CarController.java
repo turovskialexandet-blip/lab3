@@ -50,7 +50,7 @@ public class CarController {
     public void carStartPositions() {
         for (int i = 0; i < cars.size(); i++){
         Motor_vehicle car = cars.get(i);
-        car.getCoordinates().x = 0; //all starts at 0
+        car.getCoordinates().x = 0; //all start at 0
         car.getCoordinates().y = i * 100; //index * 100 --> 100 pixels away in y
     }}
 
