@@ -64,8 +64,10 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             // This
-            int current_Car = 0;
-            for (Motor_vehicle car : cars) {
+            for (int current_Car = cars.size() - 1; current_Car >= 0; current_Car--){
+                Motor_vehicle car = cars.get(current_Car);
+            //int current_Car = 0;
+            //for (Motor_vehicle car : cars) {
                 car.move();
                 int x = (int) Math.round(car.getCoordinates().x);
                 int y = (int) Math.round(car.getCoordinates().y);
@@ -104,6 +106,7 @@ public class CarController {
     // handles collision with workshop
     private void hitWorkshopCollision(int x, int y, int index, Motor_vehicle car){
         Point workShopPos = frame.drawPanel.volvoWorkshopPoint;
+
         if ("Volvo240".equals(car.getModelName())){
             System.out.println(String.format("XPos: %s, YPos: %s", x, y));
         }
