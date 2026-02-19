@@ -69,8 +69,8 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getCoordinates().x);
                 int y = (int) Math.round(car.getCoordinates().y);
-                collisionHandler(x, y, current_Car, car);
                 frame.drawPanel.moveit(x, y, current_Car);
+                collisionHandler(x, y, current_Car, car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
                 current_Car++;
@@ -111,8 +111,8 @@ public class CarController {
         // x <= workShopPos.x + 2 && car.getDirection_state() == 3
         // y <= workShopPos.y - 2 && car.getDirection_state() == 0
         // y >= workShopPos.y + 2 && car.getDirection_state() == 2
-        if (((x >= workShopPos.x &&  x < workShopPos.x + 2) ||
-                (y <= workShopPos.y && y > workShopPos.y + 2))
+        if (((x >= workShopPos.x &&  x < workShopPos.x + 100) ||
+                (y <= workShopPos.y && y > workShopPos.y + 100))
                 && "Volvo240".equals(car.getModelName())
         ) {
             System.out.println("Collided");
