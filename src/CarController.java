@@ -26,6 +26,9 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<Motor_vehicle> cars = new ArrayList<>();
 
+    //workShop object for Volvo240
+    private final Workshop<Volvo240> volvoBrand = new Workshop<>(2);
+
     //methods:
 
     public static void main(String[] args) {
@@ -66,32 +69,56 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getCoordinates().x);
                 int y = (int) Math.round(car.getCoordinates().y);
-
-                //dont move outside frame
-                int maxX = frame.drawPanel.getWidth() - 100; //how far you can move in x
-                int maxY = frame.drawPanel.getHeight() - 60;
-
-                boolean hitWall = false;
-                if ((x >= maxX && car.getDirection_state() == 1) || //right wall, drive right
-                        (x <= 0 && car.getDirection_state() == 3) || //left wall, drive left
-                        (y >= maxY && car.getDirection_state() == 0) || //bottom, drive down
-                        (y <= 0 && car.getDirection_state() == 2) //up, drive up
-                ) {
-                    hitWall = true;
-                }
-
-                if (hitWall) {
-                    car.stopEngine();
-                    car.turnLeft();
-                    car.turnLeft();
-                    car.startEngine();
-                }
-
+                collisionHandler(x, y, current_Car, car);
                 frame.drawPanel.moveit(x, y, current_Car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
                 current_Car++;
             }
+        }
+    }
+
+    //handles all collisions
+    private void collisionHandler(int x, int y, int index, Motor_vehicle car){
+        hitWallCollision(x, y, car);
+        hitWorkshopCollision(x, y, index, car);
+    }
+    // handles collision with walls
+    private void hitWallCollision(int x, int y, Motor_vehicle car){
+
+        //dont move outside frame
+        int maxX = frame.drawPanel.getWidth() - 100; //how far you can move in x
+        int maxY = frame.drawPanel.getHeight() - 60;
+
+        if ((x >= maxX && car.getDirection_state() == 1) || //right wall, drive right
+                (x <= 0 && car.getDirection_state() == 3) || //left wall, drive left
+                (y >= maxY && car.getDirection_state() == 0) || //bottom, drive down
+                (y <= 0 && car.getDirection_state() == 2) //up, drive up
+        ) {
+            car.stopEngine();
+            car.turnLeft();
+            car.turnLeft();
+            car.startEngine();
+        }
+    }
+    // handles collision with workshop
+    private void hitWorkshopCollision(int x, int y, int index, Motor_vehicle car){
+        Point workShopPos = frame.drawPanel.volvoWorkshopPoint;
+        if ("Volvo240".equals(car.getModelName())){
+            System.out.println(String.format("XPos: %s, YPos: %s", x, y));
+        }
+        // x >= workShopPos.x - 2 && car.getDirection_state() == 1
+        // x <= workShopPos.x + 2 && car.getDirection_state() == 3
+        // y <= workShopPos.y - 2 && car.getDirection_state() == 0
+        // y >= workShopPos.y + 2 && car.getDirection_state() == 2
+        if (((x >= workShopPos.x &&  x < workShopPos.x + 2) ||
+                (y <= workShopPos.y && y > workShopPos.y + 2))
+                && "Volvo240".equals(car.getModelName())
+        ) {
+            System.out.println("Collided");
+            volvoBrand.load((Volvo240) car);
+            frame.drawPanel.carMovedToWorkshop(index);
+            cars.remove(car);
         }
     }
 

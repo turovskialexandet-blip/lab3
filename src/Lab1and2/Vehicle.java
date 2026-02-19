@@ -47,7 +47,7 @@ public class Vehicle implements Movable {
     public double Zero_to_One(double amount){
         if (amount <= 0) amount = 0;
         else amount = Math.min(amount, 1);
-        System.out.printf("Call from Zero_to_One() function, the amount is %s\n", amount);
+        //System.out.printf("Call from Zero_to_One() function, the amount is %s\n", amount);
         return amount;
     }
 

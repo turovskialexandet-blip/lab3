@@ -5,18 +5,20 @@ import java.awt.*;
 public class Car extends Motor_vehicle {
     private final int nrDoors; // Number of doors on the car
     private Color color; // Color of the car
-    private final String modelName; // The car model
+    //private final String modelName; // The car model
 
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
         setEnginePower(enginePower);
         this.color = color;
-        this.modelName = modelName;
+        setModelName(modelName);
         stopEngine();
     }
 
     // getter-function that returns the number of doors a car has
     public int getNrDoors(){ return nrDoors; }
+
+    //public String getModelName(){return modelName; }
 
     // getter-function that returns the color of the car
     public Color getColor(){ return color; }

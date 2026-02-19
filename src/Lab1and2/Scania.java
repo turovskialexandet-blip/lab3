@@ -7,7 +7,7 @@ public class Scania extends Truck<Object>{
     private final TurboCharger turboCharger;
 
     public Scania(){
-        super(2, 550, Color.BLUE, "Lab1and2.Scania");
+        super(2, 550, Color.BLUE, "Scania");
         flatbed = new Flatbed();
         turboCharger = new TurboCharger();
     }

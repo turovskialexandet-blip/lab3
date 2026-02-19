@@ -12,21 +12,23 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODOD: Generalize
-    //BufferedImage volvoImage;
-    private List<BufferedImage> carImages = new ArrayList<>(); //lista med bilder för alal bilar
+    // list of carImages
+    private List<BufferedImage> carImages = new ArrayList<>(); //lista med bilder för alla bilar
 
-    // To keep track of a single car's position
-    //Point vehiclePoint = new Point();//lista med pos för varje bil
-
-    private HashMap<Integer, Point> carPositions = new HashMap<>();
+    // hashmap of carPositions
+    private HashMap<BufferedImage, Point> carPositions = new HashMap<>();
 
     BufferedImage volvoWorkshopImage;
-    Point volvoWorkshopPoint = new Point(300,300);
+    Point volvoWorkshopPoint = new Point(300,0);
 
     // TODO: Make this general for all cars
     void moveit(int x, int y, int index){
-        this.carPositions.put(index, new Point(x, y));
+        this.carPositions.put(carImages.get(index), new Point(x, y));
+    }
+
+    void carMovedToWorkshop(int index){
+        this.carPositions.remove(carImages.get(index));
+        this.carImages.remove(index);
     }
 
     // Initializes the panel and reads the images
@@ -36,13 +38,6 @@ public class DrawPanel extends JPanel{
         this.setBackground(Color.green);
         // Print an error message in case file is not found with a try/catch block
         try {
-            // You can remove the "pics" part if running outside of IntelliJ and
-            // everything is in the same main folder.
-            // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
-
-            // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-            // if you are starting in IntelliJ.
-            //volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
 
             //laddar alla bilder i listan
             carImages.add(ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg")));
@@ -65,7 +60,9 @@ public class DrawPanel extends JPanel{
         super.paintComponent(g);
 
         for (int i = 0; i < carImages.size(); i++){ //för varje bild, hämtas pos med samma index
-            g.drawImage(carImages.get(i), carPositions.get(i).x, carPositions.get(i).y, null);
+            g.drawImage(carImages.get(i),
+                    carPositions.get(carImages.get(i)).x,
+                    carPositions.get(carImages.get(i)).y, null);
         }
 
         //g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
@@ -75,7 +72,7 @@ public class DrawPanel extends JPanel{
 
     void create_vehiclePosDict(){
         for(int i = 0; i < carImages.size(); i++){
-            carPositions.put(i, new Point(i, i*100));
+            carPositions.put(carImages.get(i), new Point(0, i*100));
         }
     }
 }
