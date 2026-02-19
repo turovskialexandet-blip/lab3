@@ -114,8 +114,8 @@ public class CarController {
         // x <= workShopPos.x + 2 && car.getDirection_state() == 3
         // y <= workShopPos.y - 2 && car.getDirection_state() == 0
         // y >= workShopPos.y + 2 && car.getDirection_state() == 2
-        if (((x >= workShopPos.x &&  x < workShopPos.x + 100) ||
-                (y <= workShopPos.y && y > workShopPos.y + 100))
+        if (((x >= workShopPos.x &&  x < workShopPos.x + 100) &&
+                (y >= workShopPos.y && y < workShopPos.y + 100))
                 && "Volvo240".equals(car.getModelName())
         ) {
             System.out.println("Collided");
