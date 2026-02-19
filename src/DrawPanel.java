@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -16,8 +17,9 @@ public class DrawPanel extends JPanel{
     private List<BufferedImage> carImages = new ArrayList<>(); //lista med bilder för alal bilar
 
     // To keep track of a single car's position
-    //Point vehiclePoint = new Point();
-    private List<Point> carPositions = new ArrayList<>(); //lista med pos för varje bil
+    //Point vehiclePoint = new Point();//lista med pos för varje bil
+
+    private HashMap<Integer, Point> carPositions = new HashMap<>();
 
     BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(300,300);
@@ -26,7 +28,7 @@ public class DrawPanel extends JPanel{
     void moveit(int x, int y, int index){
         //this.vehiclePoint.x = x;
         //this.vehiclePoint.y = y;
-        this.carPositions.add(index, new Point(x, y));
+        this.carPositions.put(index, new Point(x, y));
     }
 
     // Initializes the panel and reads the images
@@ -54,6 +56,7 @@ public class DrawPanel extends JPanel{
         {
             ex.printStackTrace();
         }
+        create_vehiclePosDict();
 
     }
 
@@ -70,5 +73,11 @@ public class DrawPanel extends JPanel{
         //g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
 
         g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
+    }
+
+    void create_vehiclePosDict(){
+        for(int i = 0; i < carImages.size(); i++){
+            carPositions.put(i, new Point(i, i*100));
+        }
     }
 }

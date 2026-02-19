@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Vehicle implements Movable {
     private final Point coordinates = new Point(0, 0);
-    private int direction_state = 0;
+    private int direction_state = 1;
     public double currentSpeed;
 
     public void move(){
