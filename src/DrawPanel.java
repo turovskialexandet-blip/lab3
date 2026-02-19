@@ -26,8 +26,6 @@ public class DrawPanel extends JPanel{
 
     // TODO: Make this general for all cars
     void moveit(int x, int y, int index){
-        //this.vehiclePoint.x = x;
-        //this.vehiclePoint.y = y;
         this.carPositions.put(index, new Point(x, y));
     }
 

@@ -49,10 +49,11 @@ public class CarController {
     //spawning 100 pixels away from each other
     public void carStartPositions() {
         for (int i = 0; i < cars.size(); i++){
-        Motor_vehicle car = cars.get(i);
-        car.getCoordinates().x = 0; //all start at 0
-        car.getCoordinates().y = i * 100; //index * 100 --> 100 pixels away in y
-    }}
+            Motor_vehicle car = cars.get(i);
+            car.getCoordinates().x = 0; //all start at 0
+            car.getCoordinates().y = i * 100; //index * 100 --> 100 pixels away in y
+        }
+    }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
