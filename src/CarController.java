@@ -66,18 +66,16 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             // This
-            for (int current_Car = cars.size() - 1; current_Car >= 0; current_Car--){
-                Motor_vehicle car = cars.get(current_Car);
-            //int current_Car = 0;
-            //for (Motor_vehicle car : cars) {
+            for (int i = cars.size()-1; i >= 0; i--) {
+                Motor_vehicle car = cars.get(i);
                 car.move();
                 int x = (int) Math.round(car.getCoordinates().x);
                 int y = (int) Math.round(car.getCoordinates().y);
-                frame.drawPanel.moveit(x, y, current_Car);
-                collisionHandler(x, y, current_Car, car);
+                frame.drawPanel.moveit(x, y, i);
+                collisionHandler(x, y, i, car);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
-                current_Car++;
+                //current_Car++;
             }
         }
     }
@@ -90,7 +88,7 @@ public class CarController {
     // handles collision with walls
     private void hitWallCollision(int x, int y, Motor_vehicle car){
 
-        //dont move outside frame
+        //frame constrains
         int maxX = frame.drawPanel.getWidth() - 100; //how far you can move in x
         int maxY = frame.drawPanel.getHeight() - 60;
 
@@ -105,17 +103,14 @@ public class CarController {
             car.startEngine();
         }
     }
+
     // handles collision with workshop
     private void hitWorkshopCollision(int x, int y, int index, Motor_vehicle car){
         Point workShopPos = frame.drawPanel.volvoWorkshopPoint;
-
         if ("Volvo240".equals(car.getModelName())){
             System.out.println(String.format("XPos: %s, YPos: %s", x, y));
         }
-        // x >= workShopPos.x - 2 && car.getDirection_state() == 1
-        // x <= workShopPos.x + 2 && car.getDirection_state() == 3
-        // y <= workShopPos.y - 2 && car.getDirection_state() == 0
-        // y >= workShopPos.y + 2 && car.getDirection_state() == 2
+
         if (((x >= workShopPos.x &&  x < workShopPos.x + 101) &&
                 (y >= workShopPos.y && y < workShopPos.y + 96))
                 && "Volvo240".equals(car.getModelName())
