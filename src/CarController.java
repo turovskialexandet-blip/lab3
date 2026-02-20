@@ -107,13 +107,13 @@ public class CarController {
     // handles collision with workshop
     private void hitWorkshopCollision(int x, int y, int index, Motor_vehicle car){
         Point workShopPos = frame.drawPanel.volvoWorkshopPoint;
-        if ("Volvo240".equals(car.getModelName())){
+        if (car instanceof Volvo240){
             System.out.println(String.format("XPos: %s, YPos: %s", x, y));
         }
 
         if (((x >= workShopPos.x &&  x < workShopPos.x + 101) &&
                 (y >= workShopPos.y && y < workShopPos.y + 96))
-                && "Volvo240".equals(car.getModelName())
+                && car instanceof Volvo240
         ) {
             System.out.println("Collided");
             volvoBrand.load((Volvo240) car);
