@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -114,8 +116,8 @@ public class CarController {
         // x <= workShopPos.x + 2 && car.getDirection_state() == 3
         // y <= workShopPos.y - 2 && car.getDirection_state() == 0
         // y >= workShopPos.y + 2 && car.getDirection_state() == 2
-        if (((x >= workShopPos.x &&  x < workShopPos.x + 100) &&
-                (y >= workShopPos.y && y < workShopPos.y + 100))
+        if (((x >= workShopPos.x &&  x < workShopPos.x + 101) &&
+                (y >= workShopPos.y && y < workShopPos.y + 96))
                 && "Volvo240".equals(car.getModelName())
         ) {
             System.out.println("Collided");
