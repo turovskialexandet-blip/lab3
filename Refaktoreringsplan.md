@@ -73,7 +73,7 @@ Motivering: Sänker coupling till Volvo, Saab och Scania från CarController. De
 
 ##### Utförande:
 
-Steg 1, 2 och 3 kan utföras parallellt eftersom de påverkar olika delar av systemet (modellinkapsling, specialfunktioner och bildresurser). Steg 4 bör göras efter att modellens API stabiliserats, och steg 5 kan göras när timerns loopstruktur är klar. Steg 3 måste vara klar innan DrawPanel kan använda getImage().
+Steg 1, 2, 3 och 6 kan utföras parallellt eftersom de påverkar olika delar av systemet (modellinkapsling, specialfunktioner och bildresurser). Steg 4 bör göras efter att modellens API stabiliserats, och steg 5 kan göras när timerns loopstruktur är klar. Steg 3 måste vara klar innan DrawPanel kan använda getImage().
 
 
 
